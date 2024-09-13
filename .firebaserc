@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "dash1-5c367": {
+      "hosting": {
+        "portFolio": [
+          "dash1-5c367"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "dash1-5c367"
+  }
+}

@@ -1,0 +1,99 @@
+<div class="dashboard">
+  <h1 class="dashboard-title">Tableau de bord</h1>
+
+  <div class="product-form">
+    <h2 class="form-title">
+      {{ valider ? "Modifier un produit" : "Ajouter un produit" }}
+    </h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="form">
+      <div class="form-group">
+        <label for="productName" class="form-label">Nom du produit</label>
+        <input
+          type="text"
+          id="productName"
+          class="form-control"
+          formControlName="name"
+          [(ngModel)]="nom"
+        />
+      </div>
+      <div class="form-group">
+        <label for="productDescription">Description du produit</label>
+        <textarea
+          id="productDescription"
+          class="form-control"
+          formControlName="description"
+          [(ngModel)]="description"
+          class="form-label"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="productImage" class="form-label"
+          >Lien Image du produit</label
+        >
+        <input
+          type="text"
+          id="productImage"
+          class="form-control"
+          formControlName="lienImg"
+          [(ngModel)]="lienImg"
+          class="form-label"
+        />
+      </div>
+      <div class="form-group">
+        <label for="productPrice" class="form-label">Prix du produit</label>
+        <input
+          type="text"
+          id="productPrice"
+          class="form-control"
+          formControlName="prix"
+          [(ngModel)]="prix"
+        />
+      </div>
+      <button
+        type="submit"
+        [disabled]="editForm.invalid"
+        class="btn btn-primary"
+      >
+        {{ valider ? "Modifier un produit" : "Ajouter un produit" }}
+      </button>
+    </form>
+  </div>
+
+  <div class="product-list">
+    <h2 class="list-title">Liste des produits</h2>
+    <ul class="list">
+      <li *ngFor="let produit of produits | async" class="list-item">
+        <img
+          [src]="produit.imgUrl"
+          alt="Nom du produit"
+          class="product-image"
+        />
+        <div class="product-details">
+          <h3 class="product-name">{{ produit.name }}</h3>
+          <p class="product-description">{{ produit.description }}</p>
+          <p class="product-price">{{ produit.price | currency }}</p>
+        </div>
+        <div class="product-actions">
+          <button
+            class="btn btn-edit"
+            (click)="
+              editProduit(
+                produit.name,
+                produit.description,
+                produit.imgUrl,
+                produit.price,
+                produit.id
+              )
+            "
+          >
+            Modifier
+          </button>
+          <button (click)="deleteProduit(produit.id)" class="btn btn-delete">
+            Supprimer
+          </button>
+        </div>
+      </li>
+      <!-- Ajoutez d'autres éléments de liste pour chaque produit -->
+    </ul>
+  </div>
+</div>

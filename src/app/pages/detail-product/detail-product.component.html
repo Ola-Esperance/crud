@@ -1,0 +1,11 @@
+<div class="bod">
+  <div class="product-details">
+    <h1>{{ productDetait.name }}</h1>
+    <img [src]="productDetait.imgUrl" alt="Image du Produit" />
+    <p class="description">
+      {{ productDetait.description }}
+    </p>
+    <p class="price">Prix: {{ productDetait.price | currency }}</p>
+    <button>Acheter Maintenant</button>
+  </div>
+</div>
